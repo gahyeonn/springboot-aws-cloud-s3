@@ -2,6 +2,7 @@ package com.gahyeonn.useofs3.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
@@ -29,4 +30,9 @@ public class AwsS3UploadService implements UploadService{
         return amazonS3.getUrl(bucket, fileName).toString();
     }
 
+    @Override
+    public void deleteFile(String fileName) {
+        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
+
+    }
 }

@@ -42,4 +42,10 @@ public class FileUploadService {
             throw new IllegalArgumentException(String.format("잘못된 형식의 파일 (%s) 입니다.", fileName));
         }
     }
+
+    // 파일을 삭제 메소드
+    public void deleteImage(String fileUrl){
+        String[] fileName = fileUrl.split("/");
+        s3Service.deleteFile(fileName[fileName.length-1]);
+    }
 }
